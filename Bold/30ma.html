@@ -6,9 +6,19 @@
 <style>
   @font-face {
     font-family: 'LCD';
-    src: url('./fonts/DSEG7Classic-Regular.woff2') format('woff2');
+    src: url('../fonts/DSEG7Classic-Bold.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
+  }
+
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
+  @keyframes fadeOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
   }
 
   .lcd-clock {
@@ -35,9 +45,14 @@ function updateClock() {
     // 检查是否在29分钟30秒或59分钟30秒
     if ((minutes === '29' && seconds === '30') || (minutes === '59' && seconds === '30')) {
         clockElement.style.display = 'block';
-        // 设置一个定时器，60秒后隐藏时钟
+        clockElement.style.animation = 'fadeIn 1s forwards'; // 淡入动画
+        // 设置一个定时器，60秒后隐藏时钟并停止动画
         setTimeout(function() {
-            clockElement.style.display = 'none';
+            clockElement.style.animation = 'fadeOut 1s forwards'; // 淡出动画
+            // 设置一个定时器，1秒后隐藏时钟
+            setTimeout(function() {
+                clockElement.style.display = 'none';
+            }, 1000);
         }, 60000);
     }
 
@@ -49,7 +64,6 @@ updateClock();
 
 // 每秒更新一次时钟
 setInterval(updateClock, 1000);
-
 </script>
 
 </body>
