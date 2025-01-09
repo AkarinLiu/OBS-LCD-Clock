@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>LCD 数字时钟</title>
+<style>
+  @font-face {
+    font-family: 'LCD';
+    src: url('./fonts/DSEG7Classic-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  .lcd-clock {
+    display: none; /* 默认不显示 */
+    font-family: 'LCD', monospace;
+    font-size: 128px; /* 字体大小 */
+    color: white;
+    text-shadow: 0 0 5px #000, 0 0 10px #000, 0 0 15px #000, 0 0 20px #fff;
+  }
+</style>
+</head>
+<body>
+
+<div class="lcd-clock" id="clock">00:00:00</div>
+
+<script>
+function updateClock() {
+    var now = new Date();
+    var hours = now.getHours().toString().padStart(2, '0');
+    var minutes = now.getMinutes().toString().padStart(2, '0');
+    var seconds = now.getSeconds().toString().padStart(2, '0');
+
+    // 检查是否到达29分30秒
+    if (minutes === "29" && seconds === "30") {
+        // 当时间到达29分30秒时，开始计时显示时钟
+        document.getElementById('clock').style.display = 'block';
+        setTimeout(function() {
+            document.getElementById('clock').style.display = 'none'; // 60秒后隐藏时钟
+        }, 60000);
+    }
+    //检查是否到达59分30秒
+    if (minutes === "59" && seconds === "30") {
+        // 当时间到达59分30秒时，开始计时显示时钟
+        document.getElementById('clock').style.display = 'block';
+        setTimeout(function() {
+            document.getElementById('clock').style.display = 'none'; // 60秒后隐藏时钟
+        }, 60000);
+    }
+
+    // 更新时钟显示
+    document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+}
+
+// 初始化时钟
+updateClock();
+
+// 每秒更新一次时钟，并检查是否需要显示时钟
+setInterval(updateClock, 1000);
+</script>
+
+</body>
+</html>
