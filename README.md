@@ -17,11 +17,10 @@
 | ---- | ---- | ---- |
 | 实时时钟 | index.html | DSEG7Classic-Regular |
 | 30分钟显示时钟 | 30m.html | DSEG7Classic-Regular |
-| 30分钟显示时钟（淡入淡出动画）| 30ma.html | DSEG7Classic-Regular |
 | 实时时钟 | Bold/index.html | DSEG7Classic-Bold |
 | 30分钟显示时钟 | Bold/30m.html | DSEG7Classic-Bold |
-| 30分钟显示时钟（淡入淡出动画）| Bold/30ma.html | DSEG7Classic-Bold |
 
 ## 鸣谢
 [CodeGeeX](https://codegeex.cn)
+[Fitten Code](htps://code.fittentech.com)
 [Ollama](https://ollama.com)

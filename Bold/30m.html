@@ -6,7 +6,7 @@
 <style>
   @font-face {
     font-family: 'LCD';
-    src: url('../fonts/DSEG7Classic-Bold.woff2') format('woff2');
+    src: url('./fonts/DSEG7Classic-Regular.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
   }
@@ -20,6 +20,8 @@
     font-size: 128px; /* 字体大小 */
     color: white;
     text-shadow: 0 0 5px #000, 0 0 10px #000, 0 0 15px #000, 0 0 20px #fff;
+    opacity: 0; /* 初始透明度为0 */
+    transition: opacity 1s ease-in-out; /* 淡入淡出动画 */
   }
 
   .container {
@@ -27,6 +29,10 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
+  }
+
+  .visible {
+    opacity: 1; /* 完全显示 */
   }
 </style>
 </head>
@@ -40,18 +46,28 @@ function updateClock() {
     var hours = now.getHours().toString().padStart(2, '0');
     var minutes = now.getMinutes().toString().padStart(2, '0');
     var seconds = now.getSeconds().toString().padStart(2, '0');
-    var clockElement = document.getElementById('clock');
 
-    // 检查是否在29分钟30秒或59分钟30秒
+    document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+
+    // 检查是否为29分或59分30秒
     if ((minutes === '29' && seconds === '30') || (minutes === '59' && seconds === '30')) {
-        clockElement.style.display = 'block';
-        // 设置一个定时器，60秒后隐藏时钟
-        setTimeout(function() {
-            clockElement.style.display = 'none';
-        }, 60000);
+        showClock();
     }
 
-    clockElement.textContent = `${hours}:${minutes}:${seconds}`;
+    // 检查是否为30分或00分30秒（即60秒后）
+    if ((minutes === '30' && seconds === '30') || (minutes === '00' && seconds === '30')) {
+        hideClock();
+    }
+}
+
+function showClock() {
+    var clock = document.getElementById('clock');
+    clock.classList.add('visible');
+}
+
+function hideClock() {
+    var clock = document.getElementById('clock');
+    clock.classList.remove('visible');
 }
 
 // 初始化时钟
