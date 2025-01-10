@@ -6,7 +6,7 @@
 <style>
   @font-face {
     font-family: 'LCD';
-    src: url('./fonts/DSEG7Classic-Bold.woff2') format('woff2');
+    src: url('../fonts/DSEG7Classic-Bold.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
   }
@@ -17,11 +17,18 @@
     color: white;
     text-shadow: 0 0 5px #000, 0 0 10px #000, 0 0 15px #000, 0 0 20px #fff;
   }
+
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
 </style>
 </head>
 <body>
 
-<div class="lcd-clock" id="clock">00:00:00</div>
+<div class="container"><div class="lcd-clock" id="clock">00:00:00</div></div>
 
 <script>
 function updateClock() {
